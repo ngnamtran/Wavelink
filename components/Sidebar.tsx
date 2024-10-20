@@ -58,12 +58,9 @@ const StyledSearchInput= styled.input`
 const Sidebar = () => {
 
 const logout = async() => {
-  try{
+  
     await signOut(auth)
-  }
-  catch (error) {
-    console.log('Error log out', error)
-  }
+  
 }
 
   return (
