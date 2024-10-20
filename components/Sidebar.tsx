@@ -7,6 +7,8 @@ import ChatIcon from '@mui/icons-material/Chat'
 import MoreVerticalIcon from '@mui/icons-material/MoreVert'
 import LogOutIcon from '@mui/icons-material/Logout'
 import SearchIcon from '@mui/icons-material/Search'
+import { signOut } from 'firebase/auth';
+import { auth } from '@/config/firebase';
 
 const StyledContainer = styled.div`
     height: 100vh;
@@ -52,7 +54,18 @@ const StyledSearchInput= styled.input`
     flex: 1;
 `
 
+
 const Sidebar = () => {
+
+const logout = async() => {
+  try{
+    await signOut(auth)
+  }
+  catch (error) {
+    console.log('Error log out', error)
+  }
+}
+
   return (
     <StyledContainer>
       <StyledHeader>
@@ -66,7 +79,8 @@ const Sidebar = () => {
             <IconButton>
                 <MoreVerticalIcon/>
             </IconButton>
-            <IconButton>
+            <IconButton onClick ={logout}>
+
                 <LogOutIcon/>
             </IconButton>
         </div>

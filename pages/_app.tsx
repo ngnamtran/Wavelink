@@ -1,9 +1,12 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Login from "./login";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/config/firebase";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const userLogin = false;
+  const [userLogin, loading, _error] = useAuthState(auth)
+  if(loading) return <h1> Loading</h1>
     if (!userLogin) return <Login/>
   return <Component {...pageProps} />;
 }
